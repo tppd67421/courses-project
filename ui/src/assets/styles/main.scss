@@ -1,5 +1,10 @@
-@import './reset.scss';
+@import 'reset.scss';
+@import 'fonts.scss';
+@import './mixins/flexbox.scss';
+@import './mixins/fonts.scss';
 
 .cc-app {
+  @include flexbox(row, flex-start);
+  @include font-regular();
   width: 100%;
 }

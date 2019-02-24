@@ -38,6 +38,12 @@ module.exports = {
           'image-webpack-loader?bypassOnDebug&optipng.optimizationLevel=7&gifsicle.interlaced=false',
         ],
       },
+      {
+        test: /\.otf$/,
+        loaders: [
+          'url-loader',
+        ],
+      },
     ],
   },
   plugins: [
