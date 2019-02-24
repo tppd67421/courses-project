@@ -4,7 +4,7 @@ import '../../assets/styles/main.scss';
 export interface AppProps {
 }
 
-export default class App extends React.Component<AppProps, undefined> {
+export default class App extends React.Component<AppProps> {
     render() {
         return (
             <div className='cc-app'>

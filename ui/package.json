@@ -64,5 +64,12 @@
     "webpack-dev-server": "^3.1.14",
     "webpack-merge": "^4.2.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "immutable": "^4.0.0-rc.12",
+    "lodash": "^4.17.11",
+    "react-redux": "^6.0.1",
+    "react-router-redux": "^4.0.8",
+    "redux": "^4.0.1",
+    "redux-immutable": "^4.0.0"
+  }
 }

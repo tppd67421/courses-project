@@ -2,13 +2,19 @@ import * as React from 'react';
 import {render} from 'react-dom';
 import {AppContainer} from 'react-hot-loader';
 import App from './components/App';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import { rootReducer } from './store/reducers';
 
+const store = createStore(rootReducer);
 const rootEl = document.getElementById('root');
 
 render(
-    <AppContainer>
-        <App/>
-    </AppContainer>,
+    <Provider store={store}>
+        <AppContainer>
+            <App/>
+        </AppContainer>
+    </Provider>,
     rootEl
 );
 
@@ -20,9 +26,11 @@ if (module.hot) {
         const NewApp = require('./components/App').default;
 
         render(
-            <AppContainer>
-                <NewApp/>
-            </AppContainer>,
+            <Provider store={store}>
+                <AppContainer>
+                    <NewApp/>
+                </AppContainer>
+            </Provider>,
             rootEl
         );
     });
