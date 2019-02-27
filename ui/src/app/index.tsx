@@ -1,6 +1,8 @@
 import * as React from 'react';
+import createHistory from 'history/createBrowserHistory';
 import {render} from 'react-dom';
 import {AppContainer} from 'react-hot-loader';
+import { ConnectedRouter } from 'react-router-redux';
 import App from './components/App';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
@@ -11,9 +13,11 @@ const rootEl = document.getElementById('root');
 
 render(
     <Provider store={store}>
-        <AppContainer>
-            <App/>
-        </AppContainer>
+        <ConnectedRouter history={history}>
+            <AppContainer>
+                <App/>
+            </AppContainer>
+        </ConnectedRouter>
     </Provider>,
     rootEl
 );
@@ -27,9 +31,11 @@ if (module.hot) {
 
         render(
             <Provider store={store}>
-                <AppContainer>
-                    <NewApp/>
-                </AppContainer>
+                <ConnectedRouter history={history}>
+                    <AppContainer>
+                        <NewApp/>
+                    </AppContainer>
+                </ConnectedRouter>
             </Provider>,
             rootEl
         );
