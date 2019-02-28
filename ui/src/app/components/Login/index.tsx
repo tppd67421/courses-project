@@ -25,7 +25,7 @@ const mapDispatchToProps = (dispatch: any, props: Props): Partial<Props> => {
     };
 };
 
-class Layout extends React.Component<Props, any> {
+class Login extends React.Component<Props, any> {
     constructor(props: Props) {
         super(props);
     }
@@ -43,4 +43,4 @@ class Layout extends React.Component<Props, any> {
 export default connect(
     mapStateToProps,
     mapDispatchToProps,
-)(Layout);
+)(Login);
