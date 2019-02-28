@@ -7,6 +7,7 @@ import App from './components/App';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import { rootReducer } from './store/reducers';
+import LayoutGuard from './components/LayoutGuard';
 
 const store = createStore(rootReducer);
 const rootEl = document.getElementById('root');
@@ -15,7 +16,9 @@ render(
     <Provider store={store}>
         <ConnectedRouter history={history}>
             <AppContainer>
-                <App/>
+                <LayoutGuard>
+                    <App/>
+                </LayoutGuard>
             </AppContainer>
         </ConnectedRouter>
     </Provider>,
@@ -33,7 +36,9 @@ if (module.hot) {
             <Provider store={store}>
                 <ConnectedRouter history={history}>
                     <AppContainer>
-                        <NewApp/>
+                        <LayoutGuard>
+                            <NewApp/>
+                        </LayoutGuard>
                     </AppContainer>
                 </ConnectedRouter>
             </Provider>,
