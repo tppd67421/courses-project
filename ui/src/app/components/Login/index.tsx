@@ -1,6 +1,7 @@
 import { IAppState } from '../../store/reducers/index';
 import * as React from 'react';
 import { connect } from 'react-redux';
+import Modal from '../Modal';
 
 interface Props {
     children: React.ReactNode;
@@ -35,7 +36,13 @@ class Login extends React.Component<Props, any> {
 
     public render(): React.ReactElement {
         return (
-            <div>Lol</div>
+            <Modal>
+                <div className='cc-login-wrapper'>
+                    <form>
+
+                    </form>
+                </div>
+            </Modal>
         );
     }
 }

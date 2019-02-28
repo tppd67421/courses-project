@@ -1,11 +1,15 @@
 import '../../assets/styles/main.scss';
 import * as React from 'react';
 
-const Modal = ({children}): JSX.Element => {
+interface Props {
+    children: React.ReactNode;
+}
+
+const Modal = (props: Props): JSX.Element => {
     return (
         <div className='cc-modal-wrapper'>
             <div className='cc-modal'>
-                {children}
+                {props.children}
             </div>
         </div>
     );
