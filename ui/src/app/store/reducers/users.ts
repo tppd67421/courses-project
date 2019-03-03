@@ -9,8 +9,8 @@ export type IUserState = {
 
 const initialState: IUserState = {
     username: void 0,
-    isAdmin: false,
-    isLoggedIn: false,
+    isAdmin: true,
+    isLoggedIn: true,
 };
 
 export function userReducer(state = initialState, action: Action<any>): IUserState {
