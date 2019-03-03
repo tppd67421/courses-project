@@ -1,5 +1,6 @@
 import { IAppState } from '../../store/reducers/index';
 import Login from '../Login';
+import App from '../App';
 import * as React from 'react';
 import { connect } from 'react-redux';
 
@@ -13,7 +14,6 @@ interface Props {
 const mapStateToProps = (state: IAppState, props: Props): Partial<Props> => {
     return {
         ...props,
-        isLoggedIn: state.user.isLoggedIn,
     };
 };
 
@@ -43,15 +43,10 @@ class LayoutGuard extends React.Component<Props, any> {
         }
 
         if (this.props.isLoggedIn) {
-            return [
-                // <Header key="header" />,
-                // <main key="main" className={cn('container', 'main-container')}>
-                //     {this.props.children}
-                // </main>,
-            ];
+            return <App />;
         }
 
-        // return <Login />;
+        return <Login />;
     }
 }
 

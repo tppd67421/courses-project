@@ -16,9 +16,7 @@ render(
     <Provider store={store}>
         <ConnectedRouter history={history}>
             <AppContainer>
-                <LayoutGuard>
-                    <App/>
-                </LayoutGuard>
+                <LayoutGuard />
             </AppContainer>
         </ConnectedRouter>
     </Provider>,
@@ -29,16 +27,14 @@ render(
 declare let module: { hot: any };
 
 if (module.hot) {
-    module.hot.accept('./components/App', () => {
-        const NewApp = require('./components/App').default;
+    module.hot.accept('./components/LayoutGuard', () => {
+        const NewApp = require('./components/LayoutGuard').default;
 
         render(
             <Provider store={store}>
                 <ConnectedRouter history={history}>
                     <AppContainer>
-                        <LayoutGuard>
-                            <NewApp/>
-                        </LayoutGuard>
+                        <LayoutGuard />
                     </AppContainer>
                 </ConnectedRouter>
             </Provider>,

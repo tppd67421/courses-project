@@ -1,4 +1,4 @@
-import '../../assets/styles/main.scss';
+import './index.scss';
 import * as React from 'react';
 
 interface Props {
