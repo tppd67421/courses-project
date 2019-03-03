@@ -1,14 +1,14 @@
-import { UserState, userReducer } from './users';
-import { combineReducers } from 'redux-immutable';
+import { IUserState, userReducer } from './users';
+import { combineReducers } from 'redux';
 import { RouterState, routerReducer } from 'react-router-redux';
 import { Action } from 'redux';
 
 export interface IAppState {
     router: RouterState;
-    user: UserState;
+    user: IUserState;
 }
 
 export const rootReducer = combineReducers<IAppState, Action<any>>({
     router: routerReducer,
-    user: userReducer,
+    user: userReducer
 });

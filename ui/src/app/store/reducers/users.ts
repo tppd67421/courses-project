@@ -1,19 +1,19 @@
 import { Action } from 'redux';
 import { UserConstants } from '../constants/user';
 
-export type UserState = {
+export type IUserState = {
     username: string;
     isAdmin: boolean;
     isLoggedIn: boolean;
 };
 
-const initialState: UserState = {
+const initialState: IUserState = {
     username: void 0,
     isAdmin: false,
     isLoggedIn: false,
 };
 
-export function userReducer(state = initialState, action: Action<any>): UserState {
+export function userReducer(state = initialState, action: Action<any>): IUserState {
     switch (action.type) {
         case UserConstants.FETCH_USER: {
             return {

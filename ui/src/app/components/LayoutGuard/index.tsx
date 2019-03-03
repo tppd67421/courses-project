@@ -14,6 +14,7 @@ interface Props {
 const mapStateToProps = (state: IAppState, props: Props): Partial<Props> => {
     return {
         ...props,
+        isLoggedIn: state.user.isLoggedIn
     };
 };
 
