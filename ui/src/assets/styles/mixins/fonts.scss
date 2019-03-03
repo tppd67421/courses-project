@@ -1,0 +1,19 @@
+@mixin font-extralight() {
+    font-family: 'SansPro-ExtraLight';
+}
+
+@mixin font-light() {
+    font-family: 'SansPro-Light';
+}
+
+@mixin font-regular() {
+    font-family: 'SansPro-Regular';
+}
+
+@mixin font-semibold() {
+    font-family: 'SansPro-SemiBold';
+}
+
+@mixin font-bold() {
+    font-family: 'SansPro-Bold';
+}

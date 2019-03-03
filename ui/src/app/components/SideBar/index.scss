@@ -1,0 +1,19 @@
+@import '../../../assets/styles/variables/colors';
+@import '../../../assets/styles/variables/sizes';
+@import '../../../assets/styles/mixins/flexbox';
+
+.cc-sidebar-wrapper {
+    position: fixed;
+    width: $sidebar-width;
+    height: 100%;
+    background-color: $color-sidebar; 
+}
+
+.cc-sidebar {
+    position: relative;
+    @include flexbox(column, flex-start);
+
+    &__logo {
+        font-size: 1rem;
+    }
+}

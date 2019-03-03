@@ -1,0 +1,31 @@
+@import "../variables/screens";
+
+@mixin mobile-tiny() {
+	@media (min-width: $screen-mobile-tiny) {
+		@content;
+	}
+}
+
+@mixin tablet() {
+	@media (min-width: $screen-tablet) {
+		@content;
+	}
+}
+
+@mixin laptop() {
+	@media (min-width: $screen-laptop) {
+		@content;
+	}
+}
+
+@mixin laptop-large() {
+	@media (min-width: $screen-laptop-large) {
+		@content;
+	}
+}
+
+@mixin desktop() {
+	@media (min-width: $screen-desktop) {
+		@content;
+	}
+}

@@ -1,0 +1,15 @@
+@import '../../../assets/styles/mixins/flexbox.scss';
+@import '../../../assets/styles/variables/colors.scss';
+
+.cc-modal-wrapper {
+    @include flexbox(column);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: transparentize($color: $color-black, $amount: 0.3)
+}
+
+.cc-modal {
+    padding: 20px;
+    background-color: $color-white;
+}
