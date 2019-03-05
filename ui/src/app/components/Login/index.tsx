@@ -3,12 +3,13 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import Modal from '../Modal';
 import './index.scss';
+import { AuthService } from '../../services/authService';
 
 interface Props {
     children: React.ReactNode;
     isLoggedIn?: boolean;
     isLoading?: boolean;
-    onLoad?: () => void;
+    auth?: () => void;
 }
 
 interface State {
@@ -26,8 +27,8 @@ const mapStateToProps = (state: IAppState, props: Props): Partial<Props> => {
 const mapDispatchToProps = (dispatch: any, props: Props): Partial<Props> => {
     return {
         ...props,
-        onLoad: () => {
-            // dispatch(fetchSession());
+        auth: () => {
+            dispatch(AuthService.fakeSession());
         },
     };
 };
@@ -49,11 +50,11 @@ class Login extends React.Component<Props, any> {
     }
 
     public onChange = (event: React.SyntheticEvent): void => {
-        console.log(event);
+
     }
 
     public onSubmit = (event: React.SyntheticEvent): void => {
-        console.log(event);
+        event.preventDefault();
     }
 
 
@@ -75,14 +76,15 @@ class Login extends React.Component<Props, any> {
                         <div className='cc-form__control'>
                             <label className='cc-form__label' htmlFor='password'>Пароль</label>
                             <input
+                                type='password'
                                 onChange={this.onChange}
                                 name='password' className='cc-form__input'
                                 placeholder={this.passwordPlaceholder}
                                 id='password' />
                         </div>
                         <div className='cc-login__buttons'>
-                            <button className='cc-btn cc-login__button_with-margin cc-btn_red-outline'>Регистрация</button>
-                            <button className='cc-btn cc-login__button cc-btn_red'>Авторизация</button>
+                            <button type='button' className='cc-btn cc-login__button_with-margin cc-btn_red-outline'>Регистрация</button>
+                            <button type='button' className='cc-btn cc-login__button cc-btn_red' onClick={this.props.auth}>Авторизация</button>
                         </div>
                     </form>
                 </div>
@@ -92,5 +94,6 @@ class Login extends React.Component<Props, any> {
 }
 
 export default connect(
-    mapStateToProps
+    mapStateToProps,
+    mapDispatchToProps,
 )(Login);

@@ -14,7 +14,27 @@ export class AuthService {
         StorageService.set<string>(TOKEN_NAME + userId, token);
     }
 
-    public static async fetchSession() {
+    public static fakeSession() {
+        return async (dispatch: any) => {
+            dispatch({
+                type: UserConstants.FETCH_USER,
+            });
+            try {
+                await setTimeout(() => {}, 500);
+                const result = {username: 'test'};
+                dispatch({
+                    type: UserConstants.FETCH_USER_OK,
+                    payload: result,
+                });
+            } catch (err) {
+                dispatch({
+                    type: UserConstants.FETCH_USER_FAIL,
+                });
+            }
+        };
+    }
+
+    public static fetchSession() {
         return async (dispatch: any) => {
             dispatch({
                 type: UserConstants.FETCH_USER,
@@ -35,4 +55,3 @@ export class AuthService {
 
     constructor() {}
 }
-
