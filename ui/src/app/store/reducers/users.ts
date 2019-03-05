@@ -10,7 +10,7 @@ export type IUserState = {
 const initialState: IUserState = {
     username: void 0,
     isAdmin: true,
-    isLoggedIn: true,
+    isLoggedIn: false,
 };
 
 export function userReducer(state = initialState, action: Action<any>): IUserState {
