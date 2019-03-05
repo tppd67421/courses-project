@@ -11,4 +11,16 @@
     &__title {
         margin-bottom: 40px;
     }
+
+    &__buttons {
+        @include flexbox();
+    }
+
+    &__button {
+        width: 100%;
+
+        &_with-margin {
+            margin-right: 30px;
+        }
+    }
 }

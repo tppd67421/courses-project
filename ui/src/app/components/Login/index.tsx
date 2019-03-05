@@ -77,8 +77,12 @@ class Login extends React.Component<Props, any> {
                             <input
                                 onChange={this.onChange}
                                 name='password' className='cc-form__input'
-                                placeholder={this.passwordPlaceholder} 
+                                placeholder={this.passwordPlaceholder}
                                 id='password' />
+                        </div>
+                        <div className='cc-login__buttons'>
+                            <button className='cc-btn cc-login__button_with-margin cc-btn_red-outline'>Регистрация</button>
+                            <button className='cc-btn cc-login__button cc-btn_red'>Авторизация</button>
                         </div>
                     </form>
                 </div>

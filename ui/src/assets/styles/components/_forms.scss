@@ -19,9 +19,10 @@
     &__input {
         @include font-regular();
         width: 100%;
-        border: 2px solid $color-blue;
+        border: 2px solid $color-shadow-blue;
         border-radius: 5px;
         min-height: 40px;
+        outline: none;
         padding: 10px;
 
         &_error {
@@ -32,8 +33,68 @@
             border-color: $color-success;
         }
 
+        &:focus {
+            border-color: $color-blue;
+        }
+
         &::placeholder {
             @include font-regular();
         }
     }
+}
+
+.cc-btn {
+    @include font-semibold();
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 10px 20px;
+    border: 2px solid transparent;
+    outline: none;
+    background: none;
+    border-radius: 7px;  
+    
+    &:hover {
+        opacity: 0.8;
+    }
+    
+    &:active {
+        opacity: 0.5;
+    }
+
+    &[disabled] {
+        opacity: 0.3;
+    }
+
+
+    &_blue {
+        background-color: $color-blue;
+        color: $color-white;
+    }
+
+    &_blue-outline {
+        border-color: $color-blue;
+        color: $color-blue;      
+    }
+
+    &_green {
+        background-color: $color-green;
+        color: $color-white;
+    }
+
+    &_green-outline {
+        border-color: $color-green;
+        color: $color-green;      
+    }
+
+    &_red {
+        background-color: $color-red;
+        color: $color-white;
+    }
+
+    &_red-outline {
+        border-color: $color-red;
+        color: $color-red;      
+    }
+
+
 }
