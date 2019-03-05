@@ -14,7 +14,7 @@ export interface ActionPayload<T> extends Action {
 const initialState: IUserState = {
     username: void 0,
     isAdmin: true,
-    isLoggedIn: false,
+    isLoggedIn: false, // CHANGE IT IF IT NEEDED
 };
 
 export function userReducer(state = initialState, action: ActionPayload<any>): IUserState {
