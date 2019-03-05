@@ -7,17 +7,28 @@ export type IUserState = {
     isLoggedIn: boolean;
 };
 
+export interface ActionPayload<T> extends Action {
+    payload: T;
+}
+
 const initialState: IUserState = {
     username: void 0,
     isAdmin: true,
-    isLoggedIn: true,
+    isLoggedIn: false, // CHANGE IT IF IT NEEDED
 };
 
-export function userReducer(state = initialState, action: Action<any>): IUserState {
+export function userReducer(state = initialState, action: ActionPayload<any>): IUserState {
     switch (action.type) {
         case UserConstants.FETCH_USER: {
             return {
                 ...state,
+            };
+        }
+        case UserConstants.FETCH_USER_OK: {
+            return {
+                ...state,
+                username: action.payload.username,
+                isLoggedIn: true,
             };
         }
     }

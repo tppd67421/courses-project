@@ -9,7 +9,7 @@ declare let module: { hot: any };
 const configureStore = (history: History) => {
     const routerMiddleware = createRouterMiddleware(history);
 
-    const store = createStore(rootReducer, applyMiddleware(routerMiddleware, thunk));
+    const store = createStore(rootReducer, applyMiddleware(thunk, routerMiddleware));
 
     if (module.hot) {
         module.hot.accept('../store/reducers', () => {

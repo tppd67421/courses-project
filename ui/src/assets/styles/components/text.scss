@@ -1,3 +1,8 @@
-.cc-text {
+@import '../../styles/mixins/fonts.scss';
 
+.cc-text {
+    &__h1 {
+        @include font-bold();
+        font-size: 1.8rem;
+    }
 }
