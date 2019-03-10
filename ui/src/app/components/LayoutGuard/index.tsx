@@ -3,6 +3,7 @@ import Login from '../Login';
 import App from '../App';
 import * as React from 'react';
 import { connect } from 'react-redux';
+import Loader from '../Loader';
 
 interface Props {
     children: React.ReactNode;
@@ -14,7 +15,8 @@ interface Props {
 const mapStateToProps = (state: IAppState, props: Props): Partial<Props> => {
     return {
         ...props,
-        isLoggedIn: state.user.isLoggedIn
+        isLoading: state.user.isLoading,
+        isLoggedIn: state.user.isLoggedIn,
     };
 };
 
@@ -40,7 +42,7 @@ class LayoutGuard extends React.Component<Props, any> {
 
     render() {
         if (this.props.isLoading) {
-            // return <div>Loading...</div>;
+            return <Loader />;
         }
 
         if (this.props.isLoggedIn) {

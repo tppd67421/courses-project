@@ -4,17 +4,19 @@ import { connect } from 'react-redux';
 import Modal from '../Modal';
 import './index.scss';
 import { AuthService } from '../../services/authService';
+import { SessionModel } from '../../models/Auth/SessionModel';
 
 interface Props {
     children: React.ReactNode;
     isLoggedIn?: boolean;
     isLoading?: boolean;
-    auth?: () => void;
+    auth?: (model: SessionModel) => void;
 }
 
 interface State {
     login: string;
     password: string;
+    isDisabled: boolean;
 }
 
 const mapStateToProps = (state: IAppState, props: Props): Partial<Props> => {
@@ -27,8 +29,8 @@ const mapStateToProps = (state: IAppState, props: Props): Partial<Props> => {
 const mapDispatchToProps = (dispatch: any, props: Props): Partial<Props> => {
     return {
         ...props,
-        auth: () => {
-            dispatch(AuthService.fakeSession());
+        auth: (model: SessionModel) => {
+            dispatch(AuthService.fetchSession(model));
         },
     };
 };
@@ -42,19 +44,31 @@ class Login extends React.Component<Props, any> {
         super(props);
         this.state = {
             login: '',
-            password: ''
+            password: '',
+            isDisabled: true,
         };
     }
 
     public componentDidMount(): void {
     }
 
-    public onChange = (event: React.SyntheticEvent): void => {
-
+    public onChange = (event: React.SyntheticEvent<HTMLInputElement>): void => {
+        console.log(event.target);
+        const target: HTMLInputElement = event.target as HTMLInputElement;
+        this.setState({[target.name]: target.value});
+        this.validation();
     }
 
-    public onSubmit = (event: React.SyntheticEvent): void => {
-        event.preventDefault();
+    public onSubmit = (): void => {
+        const model: SessionModel = new SessionModel();
+        model.login = this.state.login;
+        model.password = this.state.password;
+
+        this.props.auth(model);
+    }
+
+    public validation(): void {
+        this.setState({isDisabled: !(!!this.state.login && !!this.state.password)});
     }
 
 
@@ -84,7 +98,7 @@ class Login extends React.Component<Props, any> {
                         </div>
                         <div className='cc-login__buttons'>
                             <button type='button' className='cc-btn cc-login__button_with-margin cc-btn_red-outline'>Регистрация</button>
-                            <button type='button' className='cc-btn cc-login__button cc-btn_red' onClick={this.props.auth}>Авторизация</button>
+                            <button type='button' disabled={this.state.isDisabled} className='cc-btn cc-login__button cc-btn_red' onClick={this.onSubmit}>Авторизация</button>
                         </div>
                     </form>
                 </div>

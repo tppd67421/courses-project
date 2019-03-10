@@ -1,6 +1,7 @@
 import { AuthApi } from './../api/authApi';
 import { StorageService } from './storageService';
 import { UserConstants } from '../store/constants/user';
+import { SessionModel } from '../models/Auth/SessionModel';
 
 const TOKEN_NAME: string = 'TOKEN_';
 
@@ -34,13 +35,13 @@ export class AuthService {
         };
     }
 
-    public static fetchSession() {
+    public static fetchSession(model: SessionModel) {
         return async (dispatch: any) => {
             dispatch({
                 type: UserConstants.FETCH_USER,
             });
             try {
-                const result = await AuthApi.checkSession();
+                const result = await AuthApi.checkSession(model);
                 dispatch({
                     type: UserConstants.FETCH_USER_OK,
                     payload: result,
