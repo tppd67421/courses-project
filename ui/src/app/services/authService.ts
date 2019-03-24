@@ -1,6 +1,11 @@
+import { UserData } from './../models/Shared/UserData';
+import { IUserData } from './../interfaces/Auth/UserDataDTO';
+import { ICheckSessionDTO } from '../interfaces/Auth/checkSessionDTO';
 import { AuthApi } from './../api/authApi';
 import { StorageService } from './storageService';
 import { UserConstants } from '../store/constants/user';
+import { SessionModel } from '../models/Auth/SessionModel';
+import { TokenModel } from '../models/Auth/TokenModel';
 
 const TOKEN_NAME: string = 'TOKEN_';
 
@@ -14,43 +19,38 @@ export class AuthService {
         StorageService.set<string>(TOKEN_NAME + userId, token);
     }
 
-    public static fakeSession() {
+    public static fetchSession(model: SessionModel) {
         return async (dispatch: any) => {
             dispatch({
                 type: UserConstants.FETCH_USER,
             });
             try {
-                await setTimeout(() => {}, 500);
-                const result = {username: 'test'};
+                const checkSession: ICheckSessionDTO = await AuthApi.checkSession(model);
+
+                const tokenModel: TokenModel = new TokenModel(checkSession.token);
+                const result: IUserData = await AuthApi.fetchUserData(tokenModel);
+
+                const payload: UserData = new UserData(result);
+
                 dispatch({
                     type: UserConstants.FETCH_USER_OK,
-                    payload: result,
+                    payload,
                 });
             } catch (err) {
                 dispatch({
                     type: UserConstants.FETCH_USER_FAIL,
+                    payload: err.response.data,
                 });
             }
         };
     }
 
-    public static fetchSession() {
-        return async (dispatch: any) => {
+    public static clearErrors() {
+        return (dispatch: any) => {
             dispatch({
                 type: UserConstants.FETCH_USER,
             });
-            try {
-                const result = await AuthApi.checkSession();
-                dispatch({
-                    type: UserConstants.FETCH_USER_OK,
-                    payload: result,
-                });
-            } catch (err) {
-                dispatch({
-                    type: UserConstants.FETCH_USER_FAIL,
-                });
-            }
-        };
+        }
     }
 
     constructor() {}

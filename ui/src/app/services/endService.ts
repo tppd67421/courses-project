@@ -9,5 +9,9 @@ export class EndService {
         return `${BASE_URL}/auth/login`;
     }
 
+    public static userData(): string {
+        return `${BASE_URL}/auth/userinfo`;
+    }
+
     constructor() {}
 }
