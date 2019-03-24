@@ -1,5 +1,6 @@
 @import '../../../assets/styles/mixins/flexbox.scss';
 @import '../../../assets/styles/mixins/fonts.scss';
+@import '../../../assets/styles/variables/colors.scss';
 
 .cc-login {
     @include font-regular();
@@ -22,5 +23,11 @@
         &_with-margin {
             margin-right: 30px;
         }
+    }
+
+    &__error-bar {
+        @include font-semibold();
+        margin-top: 10px;
+        color: $color-red;
     }
 }
