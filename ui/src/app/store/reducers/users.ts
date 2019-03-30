@@ -53,6 +53,9 @@ export function userReducer(state = initialState, action: ActionPayload<any>): I
                 error: initialState.error,
             };
         }
+        default:
+            return {
+                ...state,
+            };
     }
-    return state;
 }
