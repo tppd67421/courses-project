@@ -21,8 +21,8 @@ export class EndService {
         return `${BASE_URL}/courses/${id}`;
     }
 
-    public static getCourses(): string {
-        return `${BASE_URL}`;
+    public static getCourses(start: number, pageNumber: number, textFragment?: string): string {
+        return `${BASE_URL}?start=${start}`;
     }
 
     constructor() {}

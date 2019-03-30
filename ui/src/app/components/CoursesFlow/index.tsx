@@ -42,41 +42,10 @@ const mapDispatchToProps = (dispatch: any, props: Props): Partial<Props> => {
 };
 
 class CoursesFlow extends React.PureComponent<Props, any> {
-    public state: State;
-    public loginPlaceholder: string = 'Введите login';
-    public passwordPlaceholder: string = 'Введите пароль';
 
     constructor(props: Props) {
         super(props);
-        this.state = {
-            login: '',
-            password: '',
-            isDisabled: true,
-        };
     }
-
-    public componentWillUnmount(): void {
-       this.props.clear();
-    }
-
-    public onChange = (event: React.SyntheticEvent<HTMLInputElement>): void => {
-        const target: HTMLInputElement = event.target as HTMLInputElement;
-        this.setState({[target.name]: target.value});
-        this.validation();
-    }
-
-    public onClick = (): void => {
-        const model: SessionModel = new SessionModel();
-        model.login = this.state.login;
-        model.password = this.state.password;
-
-        this.props.auth(model);
-    }
-
-    public validation(): void {
-        this.setState({isDisabled: !(!!this.state.login && !!this.state.password)});
-    }
-
 
     public render(): React.ReactElement {
         return (

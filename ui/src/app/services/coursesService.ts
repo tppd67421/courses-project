@@ -6,8 +6,27 @@ export class CoursesService {
     public static clearErrors() {
         return (dispatch: any) => {
             dispatch({
+                type: UserConstants.CLEAR,
+            });
+        };
+    }
+
+    public static fetchCourses(start: number, pageNumber: number, textFragment?: string) {
+        return async (dispatch: any) => {
+            dispatch({
                 type: UserConstants.FETCH_USER,
             });
+            try {
+
+                dispatch({
+                    type: UserConstants.FETCH_USER_OK,
+                });
+            } catch (err) {
+                dispatch({
+                    type: UserConstants.FETCH_USER_FAIL,
+                    payload: err.response.data,
+                });
+            }
         };
     }
 

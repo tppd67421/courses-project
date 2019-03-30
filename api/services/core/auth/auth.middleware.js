@@ -12,11 +12,11 @@ module.exports = (server) => {
 			});
 
 		if(!matchedUser) {
-			res.status(401).send('Wrong username');
+			res.status(401).send('Wrong username or password');
 		} else if(matchedUser.password === req.body.password) {
 			res.json({ token: matchedUser.fakeToken});
 		} else {
-			res.status(401).send("Wrong password");
+			res.status(401).send("Wrong username or password");
 		}
 	});
 		

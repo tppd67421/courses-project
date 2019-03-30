@@ -76,7 +76,7 @@ export class AuthService {
     public static clearErrors() {
         return (dispatch: any) => {
             dispatch({
-                type: UserConstants.FETCH_USER,
+                type: UserConstants.CLEAR,
             });
         };
     }
