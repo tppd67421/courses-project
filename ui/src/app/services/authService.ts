@@ -78,7 +78,7 @@ export class AuthService {
             dispatch({
                 type: UserConstants.FETCH_USER,
             });
-        }
+        };
     }
 
     constructor() {}

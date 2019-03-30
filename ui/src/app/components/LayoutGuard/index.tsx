@@ -44,7 +44,7 @@ class LayoutGuard extends React.Component<Props, any> {
 
     render() {
         if (this.props.isLoading) {
-            return <Loader />;
+            <Loader />;
         }
 
         if (this.props.isLoggedIn) {

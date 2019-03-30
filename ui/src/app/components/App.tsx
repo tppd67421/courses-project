@@ -2,6 +2,7 @@ import * as React from 'react';
 import '../../assets/styles/main.scss';
 import SideBar from './SideBar';
 import { Redirect, Route, Switch } from 'react-router-dom';
+import CoursesFlow from './CoursesFlow';
 
 const App = (): JSX.Element => {
     return (
@@ -12,9 +13,9 @@ const App = (): JSX.Element => {
             <div className='cc-app__header'>
             </div>
             <div className='cc-app__main'>
-                {/* <Switch>
-                    <Route exact={true} path='/' render={() => <Redirect to='' />} />
-                </Switch> */}
+                <Switch>
+                    <Route exact={true} path='/' component={CoursesFlow} />} />
+                </Switch>
             </div>
         </div>
     );

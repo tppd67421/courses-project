@@ -13,5 +13,17 @@ export class EndService {
         return `${BASE_URL}/auth/userinfo`;
     }
 
+    public static createCourse(): string {
+        return `${BASE_URL}/courses/course`;
+    }
+
+    public static courseById(id: string): string {
+        return `${BASE_URL}/courses/${id}`;
+    }
+
+    public static getCourses(): string {
+        return `${BASE_URL}`;
+    }
+
     constructor() {}
 }
