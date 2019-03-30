@@ -4,12 +4,14 @@ import App from '../App';
 import * as React from 'react';
 import { connect } from 'react-redux';
 import Loader from '../Loader';
+import { AuthApi } from '../../api/authApi';
+import { AuthService } from '../../services/authService';
 
 interface Props {
     children: React.ReactNode;
     isLoggedIn?: boolean;
     isLoading?: boolean;
-    onLoad?: () => void;
+    fetchUserData?: (token: string) => void;
 }
 
 const mapStateToProps = (state: IAppState, props: Props): Partial<Props> => {
@@ -23,8 +25,8 @@ const mapStateToProps = (state: IAppState, props: Props): Partial<Props> => {
 const mapDispatchToProps = (dispatch: any, props: Props): Partial<Props> => {
     return {
         ...props,
-        onLoad: () => {
-            // dispatch(fetchSession());
+        fetchUserData: (token: string) => {
+            dispatch(AuthService.fetchUserData(token));
         },
     };
 };
@@ -35,8 +37,8 @@ class LayoutGuard extends React.Component<Props, any> {
     }
 
     componentDidMount() {
-        if (this.props.onLoad) {
-            this.props.onLoad();
+        if (AuthService.checkToken()) {
+            this.props.fetchUserData(AuthService.getToken());
         }
     }
 

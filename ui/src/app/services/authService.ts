@@ -7,16 +7,20 @@ import { UserConstants } from '../store/constants/user';
 import { SessionModel } from '../models/Auth/SessionModel';
 import { TokenModel } from '../models/Auth/TokenModel';
 
-const TOKEN_NAME: string = 'TOKEN_';
+const TOKEN_NAME: string = 'USER_TOKEN';
 
 export class AuthService {
 
-    public static checkToken(userId: number): boolean {
-        return StorageService.get<boolean>(TOKEN_NAME + userId);
+    public static checkToken(): boolean {
+        return StorageService.get<boolean>(TOKEN_NAME);
     }
 
-    public static setToken(userId: number, token: string): void {
-        StorageService.set<string>(TOKEN_NAME + userId, token);
+    public static getToken(): string {
+        return StorageService.get<string>(TOKEN_NAME);
+    }
+
+    public static setToken(token: string): void {
+        StorageService.set<string>(TOKEN_NAME, token);
     }
 
     public static fetchSession(model: SessionModel) {
@@ -28,8 +32,32 @@ export class AuthService {
                 const checkSession: ICheckSessionDTO = await AuthApi.checkSession(model);
 
                 const tokenModel: TokenModel = new TokenModel(checkSession.token);
-                const result: IUserData = await AuthApi.fetchUserData(tokenModel);
+                AuthService.setToken(tokenModel.token);
 
+                const result: IUserData = await AuthApi.fetchUserData(tokenModel);
+                const payload: UserData = new UserData(result);
+
+                dispatch({
+                    type: UserConstants.FETCH_USER_OK,
+                    payload,
+                });
+            } catch (err) {
+                dispatch({
+                    type: UserConstants.FETCH_USER_FAIL,
+                    payload: err.response.data,
+                });
+            }
+        };
+    }
+
+    public static fetchUserData(token: string) {
+        return async (dispatch: any) => {
+            dispatch({
+                type: UserConstants.FETCH_USER,
+            });
+            try {
+                const tokenModel: TokenModel = new TokenModel(token);
+                const result: IUserData = await AuthApi.fetchUserData(tokenModel);
                 const payload: UserData = new UserData(result);
 
                 dispatch({

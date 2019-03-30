@@ -1,15 +1,14 @@
+import { UserData } from './../../models/Shared/UserData';
 import { Action } from 'redux';
 import { UserConstants } from '../constants/user';
-import { PersonName } from '../../models/Shared/PersonName';
 
 export type IUserState = {
-    username: string;
-    name: PersonName;
-    userId: number;
+    userData: UserData;
     isAdmin: boolean;
     isLoggedIn: boolean;
     error: string;
     isLoading: boolean;
+
 };
 
 export interface ActionPayload<T> extends Action {
@@ -17,9 +16,7 @@ export interface ActionPayload<T> extends Action {
 }
 
 const initialState: IUserState = {
-    username: void 0,
-    userId: void 0,
-    name: void 0,
+    userData: void 0,
     error: void 0,
     isAdmin: true,
     isLoggedIn: false, // CHANGE IT IF IT NEEDED
@@ -37,9 +34,7 @@ export function userReducer(state = initialState, action: ActionPayload<any>): I
         case UserConstants.FETCH_USER_OK: {
             return {
                 ...state,
-                username: action.payload.login,
-                name: action.payload.name,
-                userId: action.payload.id,
+                userData: action.payload,
                 isLoggedIn: true,
                 isLoading: initialState.isLoading,
             };

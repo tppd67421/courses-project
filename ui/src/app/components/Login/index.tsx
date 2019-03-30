@@ -104,7 +104,7 @@ class Login extends React.PureComponent<Props, any> {
                                 id='password' />
                         </div>
                         <div className='cc-login__buttons'>
-                            <button type='button' className='cc-btn cc-login__button_with-margin cc-btn_red-outline'>Регистрация</button>
+                            {/* <button type='button' className='cc-btn cc-login__button_with-margin cc-btn_red-outline'>Регистрация</button> */}
                             <button type='button' disabled={this.state.isDisabled} onClick={this.onClick} className='cc-btn cc-login__button cc-btn_red'>Авторизация</button>
                         </div>
                         <div className='cc-login__error-bar'>{this.props.error}</div>
