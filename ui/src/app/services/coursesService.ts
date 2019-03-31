@@ -1,4 +1,8 @@
-import { UserConstants } from '../store/constants/user';
+import { CourseApi } from './../api/coursesApi';
+import { ICourseDTO } from './../interfaces/Courses/courses-dto';
+import { CourseConstants } from './../store/constants/courses';
+import { Course } from '../models/Courses/Courses';
+import { SortTypes } from '../enums/sort-types';
 
 
 export class CoursesService {
@@ -6,60 +10,112 @@ export class CoursesService {
     public static clearErrors() {
         return (dispatch: any) => {
             dispatch({
-                type: UserConstants.CLEAR,
+                type: CourseConstants.CLEAR,
             });
         };
     }
 
-    public static fetchCourses(start: number, pageNumber: number, textFragment?: string) {
+    public static fetchCourses(start: number, pageNumber: number, sort: SortTypes = SortTypes.Date, textFragment?: string) {
         return async (dispatch: any) => {
             dispatch({
-                type: UserConstants.FETCH_USER,
+                type: CourseConstants.FETCH_COURSES,
             });
             try {
 
+                const response: ICourseDTO[] = await CourseApi.fetchCourses(start, pageNumber, sort, textFragment);
+                const payload: Course[] = response.map((item: ICourseDTO) => Course.fromServer(item));
+
                 dispatch({
-                    type: UserConstants.FETCH_USER_OK,
+                    type: CourseConstants.FETCH_COURSES_OK,
+                    payload,
                 });
             } catch (err) {
                 dispatch({
-                    type: UserConstants.FETCH_USER_FAIL,
+                    type: CourseConstants.FETCH_COURSES_FAIL,
                     payload: err.response.data,
                 });
             }
         };
     }
 
-    // createCourse(course: ICourse) {
-    //     this.loader.set(true);
-    //     return this.http.post<ICourse[]>(SERVER_URL, course);
-    //   }
-    
-    //   getCourseById(id: string) {
-    //     this.loader.set(true);
-    //     return this.http.get<ICourse[]>(SERVER_URL, {params: {id}});
-    //   }
-    
-    //   updateCourse(course: ICourse) {
-    //     this.loader.set(true);
-    //     return this.http.patch<any>(`${SERVER_URL}/${course.id}`, course);
-    //   }
-    
-    //   deleteCourse(id: number) {
-    //     this.loader.set(true);
-    //     return this.http.delete<any>(`${SERVER_URL}/${id}`)
-    //   }
-    
-    //   getCourses(pageNumber: number, textFragment: string) {
-    //     const params = {
-    //       start: '0', 
-    //       count: `${COUNT_COURSES * pageNumber}`,
-    //       sort: 'date',
-    //     };
-    //     this.loader.set(true);
-    //     if(textFragment) return this.http.get<ICourse[]>(SERVER_URL, { params: {...params, textFragment}});
-    //     return this.http.get<ICourse[]>(SERVER_URL, {params: params});
-    //   }
+    public static createCourse(course: Course) {
+        return async (dispatch: any) => {
+            dispatch({
+                type: CourseConstants.CREATE_COURSE,
+            });
+            try {
+
+                dispatch({
+                    type: CourseConstants.CREATE_COURSE_OK,
+                });
+            } catch (err) {
+                dispatch({
+                    type: CourseConstants.CREATE_COURSE_FAIL,
+                    payload: err.response.data,
+                });
+            }
+        };
+    }
+
+
+    public static getCourseById(id: number) {
+        return async (dispatch: any) => {
+            dispatch({
+                type: CourseConstants.GET_COURSE_BY_ID,
+            });
+            try {
+
+                dispatch({
+                    type: CourseConstants.GET_COURSE_BY_ID_OK,
+                });
+            } catch (err) {
+                dispatch({
+                    type: CourseConstants.GET_COURSE_BY_ID_FAIL,
+                    payload: err.response.data,
+                });
+            }
+        };
+    }
+
+
+    public static updateCourse(course: Course) {
+        return async (dispatch: any) => {
+            dispatch({
+                type: CourseConstants.UPDATE_COURSE,
+            });
+            try {
+
+                dispatch({
+                    type: CourseConstants.UPDATE_COURSE_OK,
+                });
+            } catch (err) {
+                dispatch({
+                    type: CourseConstants.UPDATE_COURSE_FAIL,
+                    payload: err.response.data,
+                });
+            }
+        };
+    }
+
+
+    public static deleteCourse(id: number) {
+        return async (dispatch: any) => {
+            dispatch({
+                type: CourseConstants.DELETE_COURSE,
+            });
+            try {
+
+                dispatch({
+                    type: CourseConstants.DELETE_COURSE_OK,
+                });
+            } catch (err) {
+                dispatch({
+                    type: CourseConstants.DELETE_COURSE_FAIL,
+                    payload: err.response.data,
+                });
+            }
+        };
+    }
 
     constructor() {}
 }

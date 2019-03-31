@@ -6,6 +6,7 @@ import { StorageService } from './storageService';
 import { UserConstants } from '../store/constants/user';
 import { SessionModel } from '../models/Auth/SessionModel';
 import { TokenModel } from '../models/Auth/TokenModel';
+import Axios from 'axios';
 
 const TOKEN_NAME: string = 'USER_TOKEN';
 
@@ -37,6 +38,8 @@ export class AuthService {
                 const result: IUserData = await AuthApi.fetchUserData(tokenModel);
                 const payload: UserData = new UserData(result);
 
+                AuthService.initInterceptors(tokenModel.token);
+
                 dispatch({
                     type: UserConstants.FETCH_USER_OK,
                     payload,
@@ -60,6 +63,8 @@ export class AuthService {
                 const result: IUserData = await AuthApi.fetchUserData(tokenModel);
                 const payload: UserData = new UserData(result);
 
+                AuthService.initInterceptors(token);
+
                 dispatch({
                     type: UserConstants.FETCH_USER_OK,
                     payload,
@@ -79,6 +84,17 @@ export class AuthService {
                 type: UserConstants.CLEAR,
             });
         };
+    }
+
+    public static initInterceptors(token: string) {
+        Axios.interceptors.request.use(function (config) {
+            console.log(config);
+            config.headers = { 'Authorization': token };
+            return config;
+          }, function (error) {
+            // Do something with request error
+            return Promise.reject(error);
+          });
     }
 
     constructor() {}

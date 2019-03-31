@@ -1,11 +1,11 @@
 import { IEntityDTO } from './../Shared/entity-dto';
 
 export interface ICourseDTO {
-    id: number;
+    id: string;
     name: string;
     date: string;
     length: number;
     description: string;
-    authors: IEntityDTO<number>[];
+    authors: IEntityDTO<string>[];
     isTopRated: boolean;
 }

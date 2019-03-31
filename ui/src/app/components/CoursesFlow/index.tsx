@@ -5,13 +5,17 @@ import Modal from '../Modal';
 import './index.scss';
 import { AuthService } from '../../services/authService';
 import { SessionModel } from '../../models/Auth/SessionModel';
+import { SortTypes } from '../../enums/sort-types';
+import { CoursesService } from '../../services/coursesService';
+import { Course } from '../../models/Courses/Courses';
+import Card from '../Card';
 
 interface Props {
     children: React.ReactNode;
-    isLoggedIn?: boolean;
+    courses: Course[];
     isLoading?: boolean;
     error: string;
-    auth?: (model: SessionModel) => void;
+    fetchCourses?: (start: number, pageNumber: number, sort?: SortTypes, textFragment?: string) => void;
     clear?: () => void;
 }
 
@@ -24,7 +28,8 @@ interface State {
 const mapStateToProps = (state: IAppState, props: Props): Partial<Props> => {
     return {
         ...props,
-        isLoggedIn: state.user.isLoggedIn,
+        courses: state.courses.courses,
+        isLoading: state.courses.isLoading,
         error: state.user.error,
     };
 };
@@ -32,8 +37,8 @@ const mapStateToProps = (state: IAppState, props: Props): Partial<Props> => {
 const mapDispatchToProps = (dispatch: any, props: Props): Partial<Props> => {
     return {
         ...props,
-        auth: (model: SessionModel) => {
-            dispatch(AuthService.fetchSession(model));
+        fetchCourses: (start: number, pageNumber: number, sort?: SortTypes, textFragment?: string) => {
+            dispatch(CoursesService.fetchCourses(start, pageNumber, sort, textFragment));
         },
         clear: () => {
             dispatch(AuthService.clearErrors());
@@ -47,9 +52,16 @@ class CoursesFlow extends React.PureComponent<Props, any> {
         super(props);
     }
 
+    public componentDidMount(): void {
+        this.props.fetchCourses(0, 20);
+    }
+
     public render(): React.ReactElement {
         return (
-            null
+            <div>
+            {/* {this.props.courses &&
+                this.props.courses.map((item: Course) => <Card course={item} key={item.id}></Card>)} */}
+            </div>
         );
     }
 }

@@ -1,3 +1,4 @@
+import { CourseConstants } from './../constants/courses';
 import { ActionPayload } from './users';
 import { Course } from './../../models/Courses/Courses';
 
@@ -15,6 +16,26 @@ const initialState: ICoursesState = {
 
 export function coursesReducer(state = initialState, action: ActionPayload<any>): ICoursesState {
     switch (action.type) {
+        case CourseConstants.FETCH_COURSES: {
+            return {
+                ...state,
+                isLoading: true,
+            };
+        }
+        case CourseConstants.FETCH_COURSES_OK: {
+            return {
+                ...state,
+                courses: action.payload,
+                isLoading: initialState.isLoading,
+            };
+        }
+        case CourseConstants.FETCH_COURSES_FAIL: {
+            return {
+                ...state,
+                isLoading: initialState.isLoading,
+                error: action.payload,
+            };
+        }
         default:
             return {
                 ...state,

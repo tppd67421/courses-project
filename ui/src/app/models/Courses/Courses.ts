@@ -4,12 +4,12 @@ import { Entity } from '../Shared/Entity';
 import * as moment from 'moment';
 
 export class Course {
-    public id: number;
+    public id: string;
     public name: string;
     public date: moment.Moment;
     public length: number;
     public description: string;
-    public authors: Entity<number>[];
+    public authors: Entity<string>[];
     public isTopRated: boolean;
 
     public static fromServer(response: ICourseDTO): Course {
@@ -24,7 +24,7 @@ export class Course {
         course.date = moment(response.date);
         course.length = response.length;
         course.description = response.description;
-        course.authors = response.authors.map((entity: IEntityDTO<number>) => Entity.fromServer<number>(entity));
+        course.authors = response.authors.map((entity: IEntityDTO<string>) => Entity.fromServer<string>(entity));
         course.isTopRated = response.isTopRated;
 
         return course;
