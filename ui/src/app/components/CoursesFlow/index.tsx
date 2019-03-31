@@ -9,6 +9,7 @@ import { SortTypes } from '../../enums/sort-types';
 import { CoursesService } from '../../services/coursesService';
 import { Course } from '../../models/Courses/Courses';
 import Card from '../Card';
+import Loader from '../Loader';
 
 interface Props {
     children: React.ReactNode;
@@ -57,8 +58,13 @@ class CoursesFlow extends React.PureComponent<Props, any> {
     }
 
     public render(): React.ReactElement {
+        if (this.props.isLoading) {
+            <Loader />;
+        }
         return (
             <div>
+            {this.props.isLoading &&
+            <Loader />}
             {/* {this.props.courses &&
                 this.props.courses.map((item: Course) => <Card course={item} key={item.id}></Card>)} */}
             </div>
