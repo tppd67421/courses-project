@@ -8,10 +8,8 @@ import { SortTypes } from '../enums/sort-types';
 export class CoursesService {
 
     public static clearErrors() {
-        return (dispatch: any) => {
-            dispatch({
-                type: CourseConstants.CLEAR,
-            });
+        return {
+            type: CourseConstants.CLEAR,
         };
     }
 

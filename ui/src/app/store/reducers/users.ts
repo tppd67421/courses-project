@@ -1,5 +1,5 @@
+import { ActionPayload } from './../../interfaces/ActionPayload';
 import { UserData } from './../../models/Shared/UserData';
-import { Action } from 'redux';
 import { UserConstants } from '../constants/user';
 
 export type IUserState = {
@@ -10,10 +10,6 @@ export type IUserState = {
     isLoading: boolean;
 
 };
-
-export interface ActionPayload<T> extends Action {
-    payload: T;
-}
 
 const initialState: IUserState = {
     userData: void 0,

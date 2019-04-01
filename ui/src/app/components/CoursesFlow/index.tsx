@@ -42,7 +42,7 @@ const mapDispatchToProps = (dispatch: any, props: Props): Partial<Props> => {
             dispatch(CoursesService.fetchCourses(start, pageNumber, sort, textFragment));
         },
         clear: () => {
-            dispatch(AuthService.clearErrors());
+            dispatch(CoursesService.clearErrors());
         }
     };
 };

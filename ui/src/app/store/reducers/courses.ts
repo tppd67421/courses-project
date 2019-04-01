@@ -1,5 +1,5 @@
+import { ActionPayload } from './../../interfaces/ActionPayload';
 import { CourseConstants } from './../constants/courses';
-import { ActionPayload } from './users';
 import { Course } from './../../models/Courses/Courses';
 
 export type ICoursesState = {
