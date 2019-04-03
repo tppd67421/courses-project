@@ -6,10 +6,12 @@
     position: fixed;
     width: $sidebar-width;
     height: 100%;
+    top: 0;
     background-color: $color-sidebar; 
 }
 
 .cc-sidebar {
+    padding: 50px 0;
     position: relative;
     @include flexbox(column, flex-start);
 

@@ -1,0 +1,24 @@
+@import '../../../assets/styles/variables/sizes';
+@import '../../../assets/styles/mixins/flexbox';
+
+.cc-header-wrapper {
+  position: fixed;
+  z-index: 2;
+}
+
+.cc-header {
+  @include flexbox();
+  &-left {
+    width: $sidebar-width;
+    @include flexbox();
+  }
+  &-button {
+    width: 20px;
+    height: 20px;
+    background-color: #cccccc;
+    cursor: pointer;
+  }
+  &-right {
+    @include flexbox();
+  }
+}
