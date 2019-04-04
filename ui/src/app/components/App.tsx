@@ -9,13 +9,13 @@ import { connect } from 'react-redux';
 import { SharedService } from '../services/sharedService';
 
 interface Props {
-    test: boolean;
+    stateSideBar: boolean;
 }
 
 const mapStateToProps = (state: IAppState, props: Props): Partial<Props> => {
     return {
         ...props,
-        test: state.shared.test,
+        stateSideBar: state.shared.stateSideBar,
     };
 };
 
@@ -23,7 +23,7 @@ const App = (props: Props): JSX.Element => {
 
     return (
         <div className='cc-app'>
-            {props.test &&
+            {props.stateSideBar &&
                 <div className='cc-app__sidebar'>
                       <SideBar />
                 </div>}

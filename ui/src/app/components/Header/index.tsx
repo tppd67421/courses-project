@@ -6,21 +6,21 @@ import './index.scss';
 
 interface Props {
     children: React.ReactNode;
-    test: boolean;
-    testFn?: () => void;
+    stateSideBar: boolean;
+    toggleSideBar?: () => void;
 }
 
 const mapStateToProps = (state: IAppState, props: Props): Partial<Props> => {
     return {
         ...props,
-        test: state.shared.test,
+        stateSideBar: state.shared.stateSideBar,
     };
 };
 
 const mapDispatchToProps = (dispatch: any, props: Props): Partial<Props> => {
     return {
         ...props,
-        testFn: () => {
+        toggleSideBar: () => {
             dispatch(SharedService.test());
         },
     };
@@ -28,7 +28,7 @@ const mapDispatchToProps = (dispatch: any, props: Props): Partial<Props> => {
 
 const Header = (props: Props): JSX.Element => {
     const toggleSideBar = () => {
-        props.testFn();
+        props.toggleSideBar();
     };
 
     return (

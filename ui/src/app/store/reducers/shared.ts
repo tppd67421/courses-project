@@ -1,18 +1,18 @@
 import { ActionPayload } from './../../interfaces/ActionPayload';
 
 export type ISharedState = {
-    test: boolean;
+    stateSideBar: boolean;
 };
 
 const initialState: ISharedState = {
-    test: true,
+    stateSideBar: true,
 };
 
 export function sharedReducer(state = initialState, action: ActionPayload<any>): ISharedState {
     switch (action.type) {
         case 'test':
             return {
-                test: !state.test,
+                stateSideBar: !state.stateSideBar,
             };
         default:
             return {
