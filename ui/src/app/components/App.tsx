@@ -8,15 +8,18 @@ import { IAppState } from '../store/reducers';
 import { connect } from 'react-redux';
 import { SharedService } from '../services/sharedService';
 
+interface Props {
+    test: boolean;
+}
 
-const mapStateToProps = (state: IAppState, props: any): Partial<any> => {
+const mapStateToProps = (state: IAppState, props: Props): Partial<Props> => {
     return {
         ...props,
         test: state.shared.test,
     };
 };
 
-const App = (props: any): JSX.Element => {
+const App = (props: Props): JSX.Element => {
 
     return (
         <div className='cc-app'>
@@ -38,5 +41,4 @@ const App = (props: any): JSX.Element => {
 
 export default connect(
     mapStateToProps,
-    null,
 )(App);

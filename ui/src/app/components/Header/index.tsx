@@ -6,7 +6,7 @@ import './index.scss';
 
 interface Props {
     children: React.ReactNode;
-    test?: boolean;
+    test: boolean;
     testFn?: () => void;
 }
 
@@ -27,7 +27,7 @@ const mapDispatchToProps = (dispatch: any, props: Props): Partial<Props> => {
 };
 
 const Header = (props: Props): JSX.Element => {
-    const onClick = () => {
+    const toggleSideBar = () => {
         props.testFn();
     };
 
@@ -35,7 +35,7 @@ const Header = (props: Props): JSX.Element => {
         <div className='cc-header-wrapper'>
             <div className='cc-header'>
                 <ul className='cc-header-left'>
-                    <li className='cc-header-button' onClick={onClick}></li>
+                    <li className='cc-header-button' onClick={toggleSideBar}></li>
                     <li className='cc-header-navigation__item'>TestingCourses</li>
                 </ul>
                 <ul className="cc-header-right">
