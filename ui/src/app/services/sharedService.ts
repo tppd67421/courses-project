@@ -1,9 +1,9 @@
 
 export class SharedService {
 
-    public static test() {
+    public static stateSideBar() {
         return {
-            type: 'test',
+            type: 'stateSideBar',
         }
     }
 

@@ -12,12 +12,12 @@
   &-left {
     width: $sidebar-width;
     @include flexbox();
-  }
-  &-button {
-    width: 20px;
-    height: 20px;
-    background-color: $color-button;
-    cursor: pointer;
+    &__button {
+      width: 20px;
+      height: 20px;
+      background-color: $color-button;
+      cursor: pointer;
+    }
   }
   &-right {
     @include flexbox();

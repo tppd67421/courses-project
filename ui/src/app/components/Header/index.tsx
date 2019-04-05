@@ -6,14 +6,14 @@ import './index.scss';
 
 interface Props {
     children: React.ReactNode;
-    stateSideBar: boolean;
+    isSideBarOpened: boolean;
     toggleSideBar?: () => void;
 }
 
 const mapStateToProps = (state: IAppState, props: Props): Partial<Props> => {
     return {
         ...props,
-        stateSideBar: state.shared.stateSideBar,
+        isSideBarOpened: state.shared.stateSideBar,
     };
 };
 
@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch: any, props: Props): Partial<Props> => {
     return {
         ...props,
         toggleSideBar: () => {
-            dispatch(SharedService.test());
+            dispatch(SharedService.stateSideBar());
         },
     };
 };
@@ -35,13 +35,13 @@ const Header = (props: Props): JSX.Element => {
         <div className='cc-header-wrapper'>
             <div className='cc-header'>
                 <ul className='cc-header-left'>
-                    <li className='cc-header-button' onClick={toggleSideBar}></li>
-                    <li className='cc-header-navigation__item'>TestingCourses</li>
+                    <li className='cc-header-left__button' onClick={toggleSideBar}></li>
+                    <li className='cc-header-left__logo'>TestingCourses</li>
                 </ul>
                 <ul className="cc-header-right">
-                    <li><input type="text" placeholder='Поиск курсов' /></li>
-                    <li><div className="like">like</div></li>
-                    <li><div className="auth">auth</div></li>
+                    <li><input type="cc-header-right__input" placeholder='Поиск курсов' /></li>
+                    <li><div className="cc-header-right__like">like</div></li>
+                    <li><div className="cc-header-right__auth">auth</div></li>
                 </ul>
             </div>
         </div>

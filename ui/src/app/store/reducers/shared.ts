@@ -10,7 +10,7 @@ const initialState: ISharedState = {
 
 export function sharedReducer(state = initialState, action: ActionPayload<any>): ISharedState {
     switch (action.type) {
-        case 'test':
+        case 'stateSideBar':
             return {
                 stateSideBar: !state.stateSideBar,
             };
