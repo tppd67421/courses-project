@@ -1,9 +1,10 @@
+import { SharedConstants } from './../store/constants/shared';
 
 export class SharedService {
 
-    public static stateSideBar() {
+    public static toggleSideBar() {
         return {
-            type: 'stateSideBar',
+            type: SharedConstants.TOGGLE_SIDE_BAR,
         }
     }
 

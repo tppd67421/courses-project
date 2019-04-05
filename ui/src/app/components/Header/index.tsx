@@ -13,7 +13,7 @@ interface Props {
 const mapStateToProps = (state: IAppState, props: Props): Partial<Props> => {
     return {
         ...props,
-        isSideBarOpened: state.shared.stateSideBar,
+        isSideBarOpened: state.shared.isSideBarOpened,
     };
 };
 
@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch: any, props: Props): Partial<Props> => {
     return {
         ...props,
         toggleSideBar: () => {
-            dispatch(SharedService.stateSideBar());
+            dispatch(SharedService.toggleSideBar());
         },
     };
 };
